@@ -18,6 +18,8 @@ if(!isset($_SESSION['username'])){
 <body>
     <a href="logout.php">Déconnexion</a>
     <a href="adding.php">Ajouter une intervention</a>
+    <div><?php retrieve();?></div>
+    
     <script src="assets/js/app.js"></script>
 </body>
 </html>

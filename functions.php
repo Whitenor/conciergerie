@@ -32,11 +32,21 @@ function adding(){
         $_POST['date_inter'],
         $_POST['etage_inter'],
         $_SESSION['id_user']));
-    $str->debugDumpParams();
+    header('Location: adding.php');
     } catch (PDOException $th) {
         echo $th;
     }
 }
 function retrieve(){
-    
+    try {
+        $str = connect()->prepare("SELECT interventions.type_inter,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user");
+        $str->execute();
+        $test = $str->fetchAll();
+        for ($i=0; $i < count($test); $i++) {
+            $index = strval($i);
+            echo '<p>'.$test[$index]['type_inter'].', réalisé le '.$test[$index]['date_inter']." à l'étage ".$test[$index]['etage']." par Mr ".$test[$index]['nom'];
+        }
+    } catch (PDOException $th) {
+        echo $th;
+    }
 }

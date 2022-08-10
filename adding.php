@@ -9,7 +9,7 @@ include("conditions.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <title>Ajout d'une intervention</title>
 </head>
 <body>
     <form action="conditions.php" method="POST">
