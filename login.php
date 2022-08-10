@@ -1,3 +1,6 @@
+<?php include("functions.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,7 +14,7 @@
 </head>
 <body>
     <main>
-        <form action="connexion.php" method="post">
+        <form action="conditions.php" method="post">
             <h1>Login</h1>
             <div>
                 <label for="username">Username:</label>
@@ -23,7 +26,6 @@
             </div>
             <section>
                 <button type="submit" name="action" value="login">Login</button>
-                <a href="register.php">Register</a>
             </section>
         </form>
     </main>

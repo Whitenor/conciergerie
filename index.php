@@ -1,6 +1,6 @@
 <?php 
-session_start();
-if(!isset($_SESSION['user'])){
+include("functions.php");
+if(!isset($_SESSION['username'])){
     header("Location: login.php");
 }
 ?>
@@ -16,6 +16,7 @@ if(!isset($_SESSION['user'])){
     <title>Conciergerie</title>
 </head>
 <body>
+    <a href="logout.php">Déconnexion</a>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
