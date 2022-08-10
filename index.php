@@ -17,6 +17,7 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
     <a href="logout.php">Déconnexion</a>
+    <a href="adding.php">Ajouter une intervention</a>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
