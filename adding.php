@@ -15,7 +15,11 @@ include("conditions.php")
     <form action="conditions.php" method="POST">
         <div>
             <label for="type_inter">Type d'intervention:</label>
-            <input type="text" name="type_inter" id="type_inter">
+            <select name="type_inter" id="selectTypeInter">
+                <?php 
+                retrieveTache();
+                ?>
+            </select>
         </div>
         <div>
             <label for="date_inter">Date de l'intervention:</label>
@@ -25,7 +29,14 @@ include("conditions.php")
             <label for="etage_inter">Étage de l'intervention:</label>
             <input type="number" name="etage_inter" id="etage_inter">
         </div>
-        <button type="submit" name="action" value="adding">Ajouter l'intervention</button>
+        <button type="submit" name="action" value="addingInter">Ajouter l'intervention</button>
+    </form>
+    <form action="conditions.php" method="POST">
+        <div>
+            <label for="type_inter_to_add">Type d'intervention:</label>
+            <input type="text" name="type_inter_to_add" id="type_inter_to_add">
+        </div>
+        <button type="submit" name="action" value="addingType">Ajouter le type d'intervention</button>
     </form>
     <a href="index.php">Retour à la liste des interventions</a>
     <script src="assets/js/app.js"></script>

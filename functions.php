@@ -26,7 +26,7 @@ function login(){
 }
 function adding(){
     try {
-        $str = connect()->prepare("INSERT INTO interventions (type_inter, date_inter, etage, id_user) VALUES(?, ?, ?, ?)");
+        $str = connect()->prepare("INSERT INTO interventions (ID_tache, date_inter, etage, id_user) VALUES(?, ?, ?, ?)");
     $str->execute(array(
         $_POST['type_inter'],
         $_POST['date_inter'],
@@ -39,14 +39,37 @@ function adding(){
 }
 function retrieve(){
     try {
-        $str = connect()->prepare("SELECT interventions.type_inter,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user");
+        $str = connect()->prepare("SELECT taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache;");
         $str->execute();
-        $test = $str->fetchAll();
-        for ($i=0; $i < count($test); $i++) {
+        $return = $str->fetchAll();
+        for ($i=0; $i < count($return); $i++) {
             $index = strval($i);
-            echo '<p>'.$test[$index]['type_inter'].', réalisé le '.$test[$index]['date_inter']." à l'étage ".$test[$index]['etage']." par Mr ".$test[$index]['nom'];
+            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'];
         }
     } catch (PDOException $th) {
         echo $th;
+    }
+}
+function addingType(){
+    try {
+        $str = connect()->prepare("INSERT INTO taches (nom_tache) VALUES(?)");
+        $str->execute(array(
+            $_POST['type_inter_to_add']));
+        header('Location: adding.php');
+    } catch (PDOException $th) {
+        echo $th;
+    }
+}
+function retrieveTache(){
+    try {
+        $str = connect()->prepare("SELECT * FROM taches");
+        $str -> execute();
+        $return= $str->fetchAll();
+        for ($i=0; $i < count($return) ; $i++) {
+            $index = strval($i);
+            echo '<option value="'.$return[$index]['ID_tache'].'">'.$return[$index]['nom_tache'].'</option>';
+        }
+    } catch (PDOException $th) {
+            echo $th;
     }
 }
