@@ -19,3 +19,14 @@ main > form > div{
     justify-content: space-between;
     align-items: center;
 }
+.tableau{
+    height: 80%;
+    width: 80%;
+    overflow: auto;
+}
+.firstRow{
+    padding: 0;
+}
+.firstRow > p{
+    margin: 0;
+}

@@ -9,3 +9,9 @@ if (isset($_POST['action'])&&$_POST['action']=="addingInter"){
 if (isset($_POST['action'])&&$_POST['action']=="addingType"){
     addingType();
 }
+if (isset($_POST['action'])&&$_POST['action']=="Modifier") {
+    updateCustom();
+}
+if (isset($_POST['action'])&&$_POST['action']=="Supprimer"){
+    deleteEntry();
+}

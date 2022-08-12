@@ -39,12 +39,14 @@ function adding(){
 }
 function retrieve(){
     try {
-        $str = connect()->prepare("SELECT taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache;");
+        $str = connect()->prepare("SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache;");
         $str->execute();
         $return = $str->fetchAll();
         for ($i=0; $i < count($return); $i++) {
             $index = strval($i);
-            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'];
+            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'].'</p>';
+            echo '<form action="modify.php" method="post"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" value="Modifier"></form>';
+            echo '<form action="conditions.php" method="post"><input type="hidden" name="IDToSendForDelete" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Supprimer"></form>';
         }
     } catch (PDOException $th) {
         echo $th;
@@ -72,4 +74,83 @@ function retrieveTache(){
     } catch (PDOException $th) {
             echo $th;
     }
+}
+function retrieveCustom(){
+    try {
+        $_SESSION['controleMulti'] = 0;
+        $query = "SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache WHERE ";
+        if(($_POST['selectTacheIndex']!=""&&$_POST['dateSelectIndex']!="")||($_POST['selectTacheIndex']!=""&&$_POST['etageSelectIndex'])||($_POST['etageSelectIndex']!=""&&$_POST['dateSelectIndex'])){
+            $_SESSION['controleMulti'] = 1;
+        }
+        if ($_POST['selectTacheIndex']!="") {
+            $retourForPrep = $_POST['selectTacheIndex'];
+            $query .= "taches.ID_tache = $retourForPrep";
+        }
+        if($_POST['dateSelectIndex']!=""){
+            if ($_SESSION['controleMulti'] = 1 && $_POST['selectTacheIndex'] !="") {
+                $query .= " AND ";
+            }
+            $query .= "interventions.date_inter = :test";
+        }
+        if ($_POST['etageSelectIndex']!="") {
+            $retourForPrep = $_POST['etageSelectIndex'];
+            if ($_SESSION['controleMulti'] = 1 && ($_POST['selectTacheIndex'] !=""||$_POST['dateSelectIndex']!="")) {
+                $query .= " AND ";
+            }
+            $query .= "interventions.etage = $retourForPrep";
+        }
+        $str = connect()->prepare($query);
+        if($_POST['dateSelectIndex']!=""){
+            $str->bindParam(':test', $_POST['dateSelectIndex']);
+        }
+        $str->execute();
+        $return = $str->fetchAll();
+        for ($i=0; $i < count($return); $i++) {
+            $index = strval($i);
+            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'].'</p>';
+            echo '<form action="modify.php"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" value="Modifier"></form>';
+        }
+    } catch (PDOException $th) {
+        echo $th;
+    }
+}
+function updateCustom(){
+    try {
+        $_SESSION['controleMulti'] = 0;
+        $query = "UPDATE interventions SET ";
+        if ($_POST['tacheToReplace']!="") {
+            $retourForPrep = $_POST['tacheToReplace'];
+            $query .= "ID_tache = $retourForPrep";
+            if ($_POST['dateToReplace']!="") {
+                $query .= ', ';
+            }
+        }
+        if($_POST['dateToReplace']!=""){
+            $query .= "date_inter = :date";
+            if ($_POST['floorToReplace']!="") {
+                $query .= ', ';
+            }
+        }
+        if ($_POST['floorToReplace']!="") {
+            $retourForPrep = $_POST['floorToReplace'];
+            $query .= "etage = $retourForPrep";
+        }
+        $query .= " WHERE ID_inter = :id_inter";
+        $str = connect()->prepare($query);
+        $str->bindParam(':id_inter', $_POST['idHiddenToReplace']);
+        if($_POST['dateToReplace']!=""){
+            $str->bindParam(':date', $_POST['dateToReplace']);
+        }
+        $str->debugDumpParams();
+        $str->execute();
+        header('Location: index.php');
+    } catch (PDOException $th) {
+        echo $th;
+    }
+}
+function deleteEntry(){
+    $query= connect()->prepare("DELETE FROM interventions WHERE id_inter=:idToDelete");
+    $query->bindParam(':idToDelete', $_POST['IDToSendForDelete']);
+    $query->execute();
+    header('Location: index.php');
 }

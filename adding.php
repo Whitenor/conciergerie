@@ -16,9 +16,7 @@ include("conditions.php")
         <div>
             <label for="type_inter">Type d'intervention:</label>
             <select name="type_inter" id="selectTypeInter">
-                <?php 
-                retrieveTache();
-                ?>
+                <?php retrieveTache();?>
             </select>
         </div>
         <div>
