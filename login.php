@@ -13,20 +13,18 @@
     <title>Login Conciergerie</title>
 </head>
 <body>
-    <main>
-        <form action="conditions.php" method="post" id="formLogin">
-            <h1>Login</h1>
-            <div>
+    <main class="vw-100 vh-100 d-flex justify-content-center align-items-center">
+        <form action="conditions.php" method="post" id="formLogin" class=" d-flex flex-column justify-content-around align-items-center">
+            <h2>Login</h2>
+            <div class="d-flex justify-content-between align-items-center">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" class="form-control w-50">
             </div>
-            <div>
+            <div class="d-flex justify-content-between align-items-center">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" class="form-control w-50">
             </div>
-            <section>
-                <button type="submit" name="action" value="login">Login</button>
-            </section>
+            <button type="submit" name="action" value="login" class="btn btn-primary">Login</button>
         </form>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

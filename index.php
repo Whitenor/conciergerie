@@ -17,23 +17,23 @@
     <title>Conciergerie</title>
 </head>
 <body>
-    <div class="mainIndex">
-        <div id="rowButton">
-            <a href="logout.php">Déconnexion</a>
-            <a href="adding.php">Ajouter une intervention</a>
+    <div class="mainIndex d-flex flex-column justify-content-center align-items-center gap-3 position-relative vh-100 vw-100">
+        <div id="rowButton" class="d-flex justify-content-center align-items-center gap-3 position-absolute">
+            <a href="logout.php" class="btn btn-outline-primary">Déconnexion</a>
+            <a href="adding.php" class="btn btn-outline-primary">Ajouter une intervention</a>
         </div>
-        <form action="index.php" method="post" id="formSearchInter">
-            <select name="selectTacheIndex" id="selectTacheIndex">
+        <form action="index.php" method="post" id="formSearchInter" class="d-flex gap-2 form">
+            <select name="selectTacheIndex" id="selectTacheIndex" class="form-select">
                 <option value=""></option>
                 <?php retrieveTache();?>
             </select>
-            <input type="date" name="dateSelectIndex" id="dateSelectIndex">
-            <input type="number" name="etageSelectIndex" id="etageSelectIndex">
-            <input type="submit" name="action" value="Chercher">
+            <input type="date" name="dateSelectIndex" id="dateSelectIndex" class="form-control">
+            <input type="number" name="etageSelectIndex" id="etageSelectIndex" class="form-control">
+            <input type="submit" name="action" value="Chercher" class="btn btn-primary">
         </form>
         <div id="tableauRetour">
-            <table class="table">
-                <thead class="table-secondary">
+            <table class="table mh-100 d-inline-block text-center">
+                <thead class="table-secondary position-sticky top-0">
                     <tr>
                         <th>Date de l'intervention</th>
                         <th>Nom de l'intervention</th>

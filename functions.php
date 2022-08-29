@@ -39,7 +39,7 @@ function adding(){
 }
 function retrieve(){
     try {
-        $str = connect()->prepare("SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache;");
+        $str = connect()->prepare("SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache ORDER BY date_inter DESC;");
         $str->execute();
         $return = $str->fetchAll();
         for ($i=0; $i < count($return); $i++) {
@@ -151,3 +151,5 @@ function deleteEntry(){
     $query->execute();
     header('Location: index.php');
 }
+
+// ORDER BY date_inter DESC 
