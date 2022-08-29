@@ -17,26 +17,44 @@
     <title>Conciergerie</title>
 </head>
 <body>
-    <a href="logout.php">Déconnexion</a>
-    <a href="adding.php">Ajouter une intervention</a>
-    <div>
-        <?php 
-        if (isset($_POST['action'])&&$_POST['action']=="Chercher" && (!empty($_POST['selectTacheIndex'])||!empty($_POST['dateSelectIndex'])||!empty($_POST['etageSelectIndex']))){
-            retrieveCustom();
-        }else{
-            retrieve();
-        }
-        ?>
+    <div class="mainIndex">
+        <div id="rowButton">
+            <a href="logout.php">Déconnexion</a>
+            <a href="adding.php">Ajouter une intervention</a>
+        </div>
+        <form action="index.php" method="post" id="formSearchInter">
+            <select name="selectTacheIndex" id="selectTacheIndex">
+                <option value=""></option>
+                <?php retrieveTache();?>
+            </select>
+            <input type="date" name="dateSelectIndex" id="dateSelectIndex">
+            <input type="number" name="etageSelectIndex" id="etageSelectIndex">
+            <input type="submit" name="action" value="Chercher">
+        </form>
+        <div id="tableauRetour">
+            <table class="table">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Date de l'intervention</th>
+                        <th>Nom de l'intervention</th>
+                        <th>Etage de l'intervention</th>
+                        <th>Nom de l'intervenant</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    if (isset($_POST['action'])&&$_POST['action']=="Chercher" && (!empty($_POST['selectTacheIndex'])||!empty($_POST['dateSelectIndex'])||!empty($_POST['etageSelectIndex']))){
+                        retrieveCustom();
+                    }else{
+                        retrieve();
+                    }?>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <form action="index.php" method="post">
-        <select name="selectTacheIndex" id="selectTacheIndex">
-            <option value=""></option>
-            <?php retrieveTache();?>
-        </select>
-        <input type="date" name="dateSelectIndex" id="dateSelectIndex">
-        <input type="number" name="etageSelectIndex" id="etageSelectIndex">
-        <input type="submit" name="action" value="Chercher">
-    </form>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="assets/js/app.js"></script>
 </body>

@@ -1,3 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #FFFBF5;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 main{
     width: 100vw;
     height: 100vh;
@@ -5,7 +19,7 @@ main{
     justify-content: center;
     align-items: center;
 }
-main > form {
+#formLogin{
     width: 20%;
     height: 30%;
     display: flex;
@@ -13,20 +27,86 @@ main > form {
     justify-content: space-around;
     align-items: flex-start;
 }
-main > form > div{
+#formLogin > div{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.tableau{
-    height: 80%;
-    width: 80%;
+.mainIndex{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 25px;
+}
+#rowButton{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+#tableauRetour{
+    height:70vh;
+}
+table{
+    width: 60%;
+    min-height: 60%;
+}
+.table{
+    min-height: 60%;
+    max-height: 100%;
     overflow: auto;
+    display: inline-block;
 }
-.firstRow{
-    padding: 0;
+
+thead{
+    position: sticky;
+    top: 0;
 }
-.firstRow > p{
-    margin: 0;
+.bodyAdd{
+    gap: 75px;
+}
+#formAddIntervention{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#formAddIntervention > div{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+#formAddIntervention > div > label{
+    width: 40%;
+}
+#formAddTypeInter{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#formAddTypeInter > div{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+#formAddTypeInter > div > label{
+    width: 40%;
+}
+.returnToIndex{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#formModify{
+    display: flex;
+    flex-direction: column;
 }

@@ -44,9 +44,7 @@ function retrieve(){
         $return = $str->fetchAll();
         for ($i=0; $i < count($return); $i++) {
             $index = strval($i);
-            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'].'</p>';
-            echo '<form action="modify.php" method="post"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" value="Modifier"></form>';
-            echo '<form action="conditions.php" method="post"><input type="hidden" name="IDToSendForDelete" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Supprimer"></form>';
+            echo '<tr><td>'.$return[$index]['date_inter'].'</td><td>'.$return[$index]['nom_tache'].'</td><td>'.$return[$index]['etage'].'</td><td>'.$return[$index]['nom'].'</td><td><form action="modify.php" method="post"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Modifier" class="btn btn-secondary"></form></td><td><form action="conditions.php" method="post"><input type="hidden" name="IDToSendForDelete" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Supprimer" class="btn btn-danger"></form></td></tr>';
         }
     } catch (PDOException $th) {
         echo $th;
@@ -107,8 +105,7 @@ function retrieveCustom(){
         $return = $str->fetchAll();
         for ($i=0; $i < count($return); $i++) {
             $index = strval($i);
-            echo '<p>'.$return[$index]['nom_tache'].', réalisé le '.$return[$index]['date_inter']." à l'étage ".$return[$index]['etage']." par Mr ".$return[$index]['nom'].'</p>';
-            echo '<form action="modify.php"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" value="Modifier"></form>';
+            echo '<tr><td>'.$return[$index]['date_inter'].'</td><td>'.$return[$index]['nom_tache'].'</td><td>'.$return[$index]['etage'].'</td><td>'.$return[$index]['nom'].'</td><td><form action="modify.php" method="post"><input type="hidden" name="IDToSendForReplace" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Modifier" class="btn btn-secondary"></form></td><td><form action="conditions.php" method="post"><input type="hidden" name="IDToSendForDelete" value="'.$return[$index]['ID_inter'].'"><input type="submit" name="action" value="Supprimer" class="btn btn-danger"></form></td></tr>';
         }
     } catch (PDOException $th) {
         echo $th;
