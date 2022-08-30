@@ -28,7 +28,7 @@
                 <?php retrieveTache();?>
             </select>
             <input type="date" name="dateSelectIndex" id="dateSelectIndex" class="form-control">
-            <input type="number" name="etageSelectIndex" id="etageSelectIndex" class="form-control">
+            <input type="number" name="etageSelectIndex" id="etageSelectIndex" class="form-control" min="0" max="10"    >
             <input type="submit" name="action" value="Chercher" class="btn btn-primary">
         </form>
         <div id="tableauRetour">
