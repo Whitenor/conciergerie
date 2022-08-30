@@ -152,5 +152,3 @@ function deleteEntry(){
     $query->execute();
     header('Location: index.php');
 }
-
-// ORDER BY date_inter DESC 
