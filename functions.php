@@ -97,6 +97,7 @@ function retrieveCustom(){
             }
             $query .= "interventions.etage = $retourForPrep";
         }
+            $query .= " ORDER BY interventions.date_inter DESC";
         $str = connect()->prepare($query);
         if($_POST['dateSelectIndex']!=""){
             $str->bindParam(':test', $_POST['dateSelectIndex']);
