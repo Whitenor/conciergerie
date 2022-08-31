@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 function connect(){
     $db = new PDO('mysql:host=localhost;dbname=conciergerie;charset=utf8', 'root', '');
     return $db;
