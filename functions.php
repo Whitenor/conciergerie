@@ -75,27 +75,16 @@ function retrieveTache(){
 }
 function retrieveCustom(){
     try {
-        $_SESSION['controleMulti'] = 0;
-        $query = "SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache WHERE ";
-        if(($_POST['selectTacheIndex']!=""&&$_POST['dateSelectIndex']!="")||($_POST['selectTacheIndex']!=""&&$_POST['etageSelectIndex'])||($_POST['etageSelectIndex']!=""&&$_POST['dateSelectIndex'])){
-            $_SESSION['controleMulti'] = 1;
-        }
+        $query = "SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache WHERE 1=1";
         if ($_POST['selectTacheIndex']!="") {
             $retourForPrep = $_POST['selectTacheIndex'];
-            $query .= "taches.ID_tache = $retourForPrep";
+            $query .= "AND taches.ID_tache = $retourForPrep";
         }
         if($_POST['dateSelectIndex']!=""){
-            if ($_SESSION['controleMulti'] = 1 && $_POST['selectTacheIndex'] !="") {
-                $query .= " AND ";
-            }
-            $query .= "interventions.date_inter = :test";
+            $query .= " AND interventions.date_inter = :test";
         }
         if ($_POST['etageSelectIndex']!="") {
-            $retourForPrep = $_POST['etageSelectIndex'];
-            if ($_SESSION['controleMulti'] = 1 && ($_POST['selectTacheIndex'] !=""||$_POST['dateSelectIndex']!="")) {
-                $query .= " AND ";
-            }
-            $query .= "interventions.etage = $retourForPrep";
+            $query .= "AND interventions.etage = $retourForPrep";
         }
             $query .= " ORDER BY interventions.date_inter DESC";
         $str = connect()->prepare($query);
