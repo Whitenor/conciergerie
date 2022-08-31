@@ -22,7 +22,7 @@
             <a href="logout.php" class="btn btn-outline-primary">Déconnexion</a>
             <a href="adding.php" class="btn btn-outline-primary">Ajouter une intervention</a>
         </div>
-        <form action="index.php" method="post" id="formSearchInter" class="d-flex gap-2 form">
+        <form action="index.php" method="post" id="formSearchInter" class="d-flex gap-2 form w-50">
             <select name="selectTacheIndex" id="selectTacheIndex" class="form-select">
                 <option value=""></option>
                 <?php retrieveTache();?>

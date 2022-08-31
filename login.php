@@ -16,11 +16,11 @@
     <main class="vw-100 vh-100 d-flex justify-content-center align-items-center">
         <form action="conditions.php" method="post" id="formLogin" class=" d-flex flex-column justify-content-around align-items-center">
             <h2>Login</h2>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center w-100">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" class="form-control w-50">
             </div>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center w-100">
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" class="form-control w-50">
             </div>
