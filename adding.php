@@ -22,11 +22,11 @@ include("conditions.php")
         </div>
         <div class="d-flex w-100">
             <label for="date_inter" class="form-label">Date de l'intervention:</label>
-            <input type="date" name="date_inter" id="date_inter" class="form-control">
+            <input type="date" name="date_inter" id="date_inter" class="form-control" required>
         </div>
         <div class="d-flex w-100">
             <label for="etage_inter" class="form-label">Étage de l'intervention:</label>
-            <input type="number" name="etage_inter" id="etage_inter" class="form-control" min="0" max="10">
+            <input type="number" name="etage_inter" id="etage_inter" class="form-control" min="0" max="10" required>
         </div>
         <button type="submit" name="action" value="addingInter" class="btn btn-primary">Ajouter l'intervention</button>
     </form>

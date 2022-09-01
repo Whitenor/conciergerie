@@ -77,13 +77,14 @@ function retrieveCustom(){
         $query = "SELECT interventions.ID_inter,taches.nom_tache,interventions.date_inter,interventions.etage,users.nom FROM interventions INNER JOIN users ON interventions.ID_user = users.ID_user INNER JOIN taches ON interventions.ID_tache = taches.ID_tache WHERE 1=1";
         if ($_POST['selectTacheIndex']!="") {
             $retourForPrep = $_POST['selectTacheIndex'];
-            $query .= "AND taches.ID_tache = $retourForPrep";
+            $query .= " AND taches.ID_tache = $retourForPrep";
         }
         if($_POST['dateSelectIndex']!=""){
             $query .= " AND interventions.date_inter = :test";
         }
         if ($_POST['etageSelectIndex']!="") {
-            $query .= "AND interventions.etage = $retourForPrep";
+            $retourForPrep = $_POST['etageSelectIndex'];
+            $query .= " AND interventions.etage = $retourForPrep";
         }
             $query .= " ORDER BY interventions.date_inter DESC";
         $str = connect()->prepare($query);
@@ -140,3 +141,5 @@ function deleteEntry(){
     $query->execute();
     header('Location: index.php');
 }
+
+// méthode -> générer info pour vue , vue -> utilisaton info retourné par méthode pour générer ce qui doit etre affiché
